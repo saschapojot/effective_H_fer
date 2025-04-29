@@ -2,6 +2,7 @@
 # the lattice is square!
 # there is  (pi\cdot rij)*(pj \cdot rij) term
 # |J| is large
+# J<0
 # interaction energy is perturbation
 # the Hamiltonian is effective, with cross terms:
 # J/|r12|^2 p1 \cdot p2 + 2J/|r12|^4 (p1\cdot r12)(p2 \cdot r12)
@@ -30,3 +31,9 @@ To run 1 pass of mc with checking statistics of dipole
 3. python exec_checking_dipole.py T N startingFileIndSuggest
 4. run 3 until equilibrium
 5. python exec_noChecking.py T N
+7. After completing computing dipoles, generate dipole values by
+   (a). pkl_dipole_data2csv.py N T init_path
+8. After completing computing dipoles, generate U by:
+   (a). python check_after_one_run_U.py confFileName startingFileIndSuggest
+   (b). python data2csv/pkl_U_data2csv.py N T init_path
+   
