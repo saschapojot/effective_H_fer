@@ -38,6 +38,13 @@ print(f"Average polarization along x (Px and Qx combined): {avg_polarization_x}"
 print(f"Average polarization along y (Py and Qy combined): {avg_polarization_y}")
 
 
+U_csv_file_name=one_path_folder+"U.csv"
+if not os.path.exists(U_csv_file_name):
+    print(f"U.csv does not exist for {TStr}")
+    exit(2 )
+UVec = np.array(pd.read_csv(U_csv_file_name, header=None))
+U_mean=np.mean(UVec)
+U_mean_str=np.round(U_mean,3)
 # Reshape the dipole components
 Px_arr = Px.reshape((N, N))
 Py_arr = Py.reshape((N, N))
@@ -79,7 +86,7 @@ plt.xlabel("x", fontsize=100)
 plt.ylabel("y", fontsize=100)
 avg_polarization_x_str=np.round(avg_polarization_x,3)
 avg_polarization_y_str=np.round(avg_polarization_y,3)
-plt.title(f"Dipole on each site for T = {TStr}, init_path{init_path}, p={avg_polarization_x_str,avg_polarization_y_str}", fontsize=120)
+plt.title(f"Dipole on each site for T = {TStr}, init_path{init_path}, p={avg_polarization_x_str,avg_polarization_y_str}, U={U_mean_str}", fontsize=120)
 plt.axis("equal")
 
 # Add colorbar from one of the quiver plots and increase number size on the colorbar.
