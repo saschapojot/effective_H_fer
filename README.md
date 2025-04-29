@@ -37,7 +37,12 @@ To run 1 pass of mc with checking statistics of dipole
 8. After completing computing dipoles, generate U by:
    (a). python check_after_one_run_U.py confFileName startingFileIndSuggest
    (b). python data2csv/pkl_U_data2csv.py N T init_path
-   
+9. run exec_checking_dipole.py sequentially
+   python iterate_exec_checking_dipole.py
+10. run data2csv/pkl_U_data2csv.py sequentially
+   python iterate_pkl_U_data2csv.py
+11. run data2csv/pkl_dipole_data2csv.py sequentially
+    python iterate_pkl_dipole_data2csv.py
 ##############################
 in separate_pltLattice/
 the plots are by init_path for each N, each T
@@ -50,7 +55,7 @@ the plots iterate different T for the same N, the same init_path
 1. convert csv file of U to average value, for all T
    python compute_U_avg.py N init_path
 2. plot U for all T
-   python plt_U.py 
+   python load_csv_plt_U.py  N init_path 
 3. compute C for all T
    python compute_C.py N init_path 
 4. plot C for all T
@@ -63,6 +68,6 @@ in plt/
    compute absolute value of polarization for all T
    python compute_dipole_avg.py N init_path
 2. plot magnitude of polarization
-   python load_csv_plt_abs_polarization.py
+   python load_csv_plt_abs_polarization.py N init_path
 3. plot dipole over a lattice
-   python load_csv_plt_lattice.py
+   python load_csv_plt_lattice.py N init_path
