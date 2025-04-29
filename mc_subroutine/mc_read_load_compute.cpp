@@ -334,7 +334,7 @@ double mc_computation::H2(const int& flattened_ind_center,const int& ind_neighbo
     // std::cout<<"rx_n0n1m0m1="<<rx_n0n1m0m1<<", ry_n0n1m0m1="<<ry_n0n1m0m1<<std::endl;
     // std::cout<<"r2_tmp="<<r2_tmp<<", r4_tmp="<<r4_tmp<<std::endl;
     double val1=J/r2_tmp*(px_n0n1*px_m0m1+py_n0n1*py_m0m1);
-    double val2=-2.0*J/r4_tmp*(px_n0n1*rx_n0n1m0m1+py_n0n1*ry_n0n1m0m1)
+    double val2=+2.0*J/r4_tmp*(px_n0n1*rx_n0n1m0m1+py_n0n1*ry_n0n1m0m1)
     *(px_m0m1*rx_n0n1m0m1+py_m0m1*ry_n0n1m0m1);
     // std::cout<<"val1="<<val1<<", val2="<<val2<<std::endl;
     // val2=0.0;
