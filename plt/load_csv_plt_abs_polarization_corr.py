@@ -10,8 +10,9 @@ import scipy.stats as stats
 from pathlib import Path
 
 
-#this script loads auto-correlation of U data for each T
-# and plots auto-correlation of U for all T
+
+#this script loads auto-correlation of abs polarization data for each T
+# and plots auto-correlation of polarization for all T
 
 if (len(sys.argv)!=3):
     print("wrong number of arguments")
@@ -38,31 +39,28 @@ for TFile in glob.glob(csvDataFolderRoot+"/T*"):
 sortedInds=np.argsort(TVals)
 sortedTVals=[TVals[ind] for ind in sortedInds]
 sortedTFiles=[TFileNames[ind] for ind in sortedInds]
+auto_corr_abs_P_dir=csvDataFolderRoot+"/corr_abs_P/"
+Path(auto_corr_abs_P_dir).mkdir(exist_ok=True,parents=True)
 
-auto_corr_U_dir=csvDataFolderRoot+"/corr_U/"
-Path(auto_corr_U_dir).mkdir(exist_ok=True,parents=True)
 
-def plt_corr_U_one_T(oneTFile):
+def plt_corr_abs_P_one_T(oneTFile):
     matchT=re.search(r'T([-+]?(?:\d*\.\d+|\d+)(?:[eE][-+]?\d+)?)',oneTFile)
     TStr=matchT.group(1)
+    corr_abs_P_csv_file_name=oneTFile+"/abs_P_corr.csv"
 
-    corr_U_csv_file_name=oneTFile+"/U_corr.csv"
-    corr_U_arr=np.array(pd.read_csv(corr_U_csv_file_name,header=None))
-
+    corr_abs_P_arr=np.array(pd.read_csv(corr_abs_P_csv_file_name,header=None))
     plt.figure()
-    plt.plot(range(0,len(corr_U_arr)),corr_U_arr,color="black")
+    plt.plot(range(0,len(corr_abs_P_arr)),corr_abs_P_arr,color="blue")
     plt.xlabel("separation")
     plt.ylabel("auto-correlation")
-    plt.title(f"auto-correlation of U, T={TStr}")
-    plt.savefig(auto_corr_U_dir+f"/corr_U_T{TStr}.png")
+    plt.title(f"auto-correlation of abs P, T={TStr}")
+    plt.savefig(auto_corr_abs_P_dir+f"/corr_abs_P_T{TStr}.png")
     plt.close()
-
 
 tStart=datetime.now()
 for k in range(0,len(sortedTFiles)):
     oneTFile=sortedTFiles[k]
-    plt_corr_U_one_T(oneTFile)
-
+    plt_corr_abs_P_one_T(oneTFile)
 
 tEnd=datetime.now()
 print(f"time: {tEnd-tStart}")
